@@ -1,0 +1,42 @@
+{
+  "rules": {
+    ".read": "auth.uid != null",
+    "messages": {
+      "$message_id": {
+        ".write": "(!data.exists() && newData.child('uid').val() == auth.uid ) || (!newData.exists() && data.child('uid').val() === auth.uid) || (data.child('uid').val() == auth.uid && newData.child('uid').val() == auth.uid)",
+        "id": {
+          ".validate": true
+        },
+        "message": {
+          ".validate": true
+        },
+        "uid": {
+          ".validate": true
+        },
+        "timestamp": {
+          ".validate": true
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".write": "auth.uid == $uid",
+        "creation_timestamp": {
+          ".validate": true
+        },
+        "nickname": {
+          ".validate": true
+        },
+        "uid": {
+          ".validate": true
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
